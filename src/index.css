@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  background-color: #F6F8FA;
+  overflow-x: auto;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: auto;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 10vh;
+  background: #f7f4ed;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 10vh;
+  border: 3px solid #f6f7ed;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #f6f3f5;
+}
+
