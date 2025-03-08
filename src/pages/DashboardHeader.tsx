@@ -36,7 +36,7 @@ const DashboardHeader = () => {
                         navigate(`/${item.title.toLowerCase()}`)
                         handleDrawerToggle()
                     }}
-                    className={`${location.pathname === `/${item.title.toLowerCase()}` ? 'bg-[#01F0D0]' : ''} whitespace-nowrap px-2 py-1 rounded-md`}
+                    className={`whitespace-nowrap px-2 py-1 ${location.pathname === `/${item.title.toLowerCase()}` ? 'bg-[#01F0D0]' : ''}`}
                 >
                     <TitleWithIcon title={item.title} icon={item.icon} />
                 </div>
@@ -65,7 +65,7 @@ const DashboardHeader = () => {
                     <div
                         key={item.title.toLowerCase()}
                         onClick={() => navigate(`/${item.title.toLowerCase()}`)}                
-                        className={`${location.pathname === `/${item.title.toLowerCase()}` ? 'bg-[#01F0D0]' : ''} whitespace-nowrap px-2 py-1 rounded-md`}
+                        className={`whitespace-nowrap px-2 py-1 ${location.pathname === `/${item.title.toLowerCase()}` ? 'bg-[#01F0D0] rounded-[41px]' : ''}`}
                     >
                         <TitleWithIcon title={item.title} icon={item.icon} />
                     </div>

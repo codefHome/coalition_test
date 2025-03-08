@@ -10,7 +10,7 @@ import { RespiratoryIcon } from "../assets/icons/RespiratoryIcon";
 import DiagnosisHistoryCard from "../sharedcomponent/DiagnosisHistoryCard";
 import DiagnosticListTable from "./DiagnosticListTable";
 import PatientsDetailCard from "./PatientsDetailCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCalculation from "../sharedcomponent/useSupportCalculation";
 interface MainBodyProps {
   data: any[];
@@ -20,7 +20,15 @@ interface MainBodyProps {
 const MainBody = ({ data }: MainBodyProps) => {
   const initialData = data[0];
   const [activeData, setActiveData] = useState<any[]>([initialData]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState(data);
 
+  useEffect(() => {
+    const filtered = data?.filter(item =>
+      item?.name?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredData(filtered);
+  }, [searchQuery, data]);
   const [chartData, setChartData] = useState<any[]>(
     initialData?.diagnosis_history?.map((singleData: any) => ({
       date: `${singleData?.month.split("").splice(0, 3).join("")}, ${
@@ -47,7 +55,7 @@ const MainBody = ({ data }: MainBodyProps) => {
   };
   const { averageTemperature, averageResip, averageHeart } =
     useCalculation(activeData);
-
+console.log({activeData})
   const diagnosisHistory = [
     {
       title: "Respiratory Rate",
@@ -83,12 +91,23 @@ const MainBody = ({ data }: MainBodyProps) => {
   return (
     <div className="flex flex-col lg:flex-row gap-4 mt-8">
       <div className="flex flex-col w-full lg:w-1/5 bg-white rounded-md p-5">
-        <div className="flex justify-between items-center">
+        <div className="flex w-full  items-center">
           <Typography className="">Patients</Typography>
-          <SearchIcon />
+          <div className="flex w-full relative">
+            <input
+              type="text"
+              placeholder="Search patients..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="px-3 ml-2 py-1 w-full border rounded-md focus:outline-none focus:ring-1 focus:ring-[#01F0D0] pr-8"
+            />
+            <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
+              <SearchIcon />
+            </div>
+          </div>
         </div>
         <div className="flex flex-col gap-[35px] mt-[43px] overflow-y-auto scrollbar h-[400px] lg:h-[1000px]">
-          {data?.map((item) => (
+          {filteredData?.map((item) => (
             <PatientListCard
               handleClick={() => handleClick(item?.name)}
               src={item?.profile_picture}
@@ -135,3 +154,4 @@ const MainBody = ({ data }: MainBodyProps) => {
 };
 
 export default MainBody;
+
