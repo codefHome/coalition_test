@@ -1,6 +1,5 @@
 
 import { useQuery } from '@tanstack/react-query'
-import DashboardHeader from './DashboardHeader'
 import MainBody from './MainBody'
 import { fetchAllData } from '../api/testApi'
 
@@ -10,12 +9,9 @@ const Dashboard = () => {
     queryFn:()=> fetchAllData()
   })
 
-  
   return (
-    <div className='flex flex-col w-full p-2'>
-        <DashboardHeader/>
-
-       { isLoading ? <div>Loading ....</div> : <MainBody data={data}/>}
+    <div className='flex flex-col w-full px-2 md:px-4 lg:px-6 space-y-4'>
+      { isLoading ? <div className="flex justify-center items-center min-h-[200px]">Loading ....</div> : <MainBody data={data}/>}
     </div>
   )
 }

@@ -81,13 +81,13 @@ const MainBody = ({ data }: MainBodyProps) => {
 
 
   return (
-    <div className="flex gap-4 mt-8 ">
-      <div className="flex flex-col w-1/5 bg-white rounded-md  p-5">
+    <div className="flex flex-col lg:flex-row gap-4 mt-8">
+      <div className="flex flex-col w-full lg:w-1/5 bg-white rounded-md p-5">
         <div className="flex justify-between items-center">
           <Typography className="">Patients</Typography>
           <SearchIcon />
         </div>
-        <div className="flex flex-col gap-[35px] mt-[43px] overflow-y-auto scrollbar h-[1000px]">
+        <div className="flex flex-col gap-[35px] mt-[43px] overflow-y-auto scrollbar h-[400px] lg:h-[1000px]">
           {data?.map((item) => (
             <PatientListCard
               handleClick={() => handleClick(item?.name)}
@@ -100,13 +100,13 @@ const MainBody = ({ data }: MainBodyProps) => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col w-3/5">
-        <div className="flex flex-col w-full bg-white rounded-lg  p-5">
+      <div className="flex flex-col w-full lg:w-3/5">
+        <div className="flex flex-col w-full bg-white rounded-lg p-5">
           <Typography>Diagnosis History</Typography>
           <div className="flex flex-col bg-[#F4F0FE] mt-3 rounded-md">
             <MyLineChart chartData={chartData} />
           </div>
-          <div className="flex justify-between gap-[21px] mt-5">
+          <div className="flex flex-col md:flex-row justify-between gap-[21px] mt-5">
             {diagnosisHistory?.map((item) => (
               <DiagnosisHistoryCard
                 boxColor={item?.boxColor}
@@ -120,15 +120,14 @@ const MainBody = ({ data }: MainBodyProps) => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col p-5 h-[349px] mb-2 rounded-lg opacity-1  bg-white mt-8">
+        <div className="flex flex-col p-5 h-[349px] mb-2 rounded-lg opacity-1 bg-white mt-8">
           <text className="text-xl font-bold mb-10">Diagnostic List</text>
           <DiagnosticListTable
             diagonsticData={activeData[0]?.diagnostic_list ?? []}
           />
         </div>
       </div>
-
-      <div className="flex  flex-col  w-1/5">
+      <div className="flex flex-col w-full lg:w-1/5">
         <PatientsDetailCard activeData={activeData} />
       </div>
     </div>

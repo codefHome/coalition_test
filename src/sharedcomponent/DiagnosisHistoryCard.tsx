@@ -15,7 +15,7 @@ interface DiagnosisHistoryCardProps{
 const DiagnosisHistoryCard = ({boxColor=false,needF,icon,title,value,status='Normal',needStatusIcon=false}:DiagnosisHistoryCardProps) => {
 
   return (
-    <div className={`flex flex-col w-[228px] h-[242px] p-4 ${boxColor ? 'bg-[#E0F3FA]' : 'bg-[#FFE6E9]'}  rounded-lg border`}>
+    <div className={`flex flex-col w-full md:w-[228px] h-[242px] p-4 ${boxColor ? 'bg-[#E0F3FA]' : 'bg-[#FFE6E9]'}  rounded-lg border`}>
 <span className="mb-4">{icon}</span>
 <Typography>{title}</Typography>
 

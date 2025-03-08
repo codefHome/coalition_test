@@ -12,23 +12,25 @@ interface ChartProps{
 
 const MyLineChart = ({chartData}:ChartProps) => {
   return (
-    <div className='flex gap-3'>
-        <div className='flex flex-col'>
-           <span className='flex w-full justify-between items-center px-8'>
+    <div className='flex flex-col lg:flex-row gap-3 w-full'>
+        <div className='flex flex-col w-full lg:w-auto'>
+           <span className='flex w-full justify-between items-center px-4 lg:px-8'>
            <Typography >Blood Pressure</Typography>
            <DropDownField/>
            </span>
-        <LineChart width={526} height={298} data={chartData}>
-      <XAxis dataKey="date" />
-      <YAxis />
-      <CartesianGrid strokeDasharray="" vertical={false} />
-      <Tooltip />
-      <Line type="monotone" dataKey="diastolic" stroke="#C26EB4" />
-      <Line type="monotone" dataKey="systolic" stroke="#8C6FE6" />
-    </LineChart>
+        <div className='w-full overflow-x-auto'>
+          <LineChart width={526} height={298} data={chartData} className='min-w-[526px]'>
+            <XAxis dataKey="date" />
+            <YAxis />
+            <CartesianGrid strokeDasharray="" vertical={false} />
+            <Tooltip />
+            <Line type="monotone" dataKey="diastolic" stroke="#C26EB4" />
+            <Line type="monotone" dataKey="systolic" stroke="#8C6FE6" />
+          </LineChart>
+        </div>
         </div>
   
-    <div className='flex flex-col mt-6 ml-4 gap-3'>
+    <div className='flex flex-col mt-4 lg:mt-6 lg:ml-4 gap-3'>
         <span className='flex items-center'>
         <FiberManualRecordIcon sx={{color:'#C26EB4',width:'14px',height:'14px'}}/>
         <Typography>Systolic</Typography>
